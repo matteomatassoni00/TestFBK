@@ -1,1 +1,67 @@
-<p>CIAO</p>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="test.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js">
+</script>
+
+<script type="text/javascript" >
+
+$(document).ready(function(){
+    $('#myTable').DataTable({
+        ajax:  "people.json",
+    
+        "columns": [
+            { "data": "nome" },
+            { "data": "data_nascita" },
+            { "data": "luogo_nascita" },
+            { "data": "sesso" },
+            { "data": "mestiere" },
+            { "data": "mestiere_espatrio" },
+            { "data": "data" },
+            { "data": "validita" },
+            { "data": "espatri" },
+            { "data": "note" },
+            { "data": "rinnovi" },
+            { "data": "n_rinnovi" }
+        ]
+    });
+});
+
+</script>
+
+</head>
+<body >
+<div style="width: 70%; margin: 0 auto;">
+    <table id="myTable" class="display" >
+        <thead>
+            <tr>
+            <th>nome</th>
+            <th>data_nascita</th>
+            <th>luogo_nascita</th>
+            <th>sesso</th>
+            <th>mestiere</th>
+            <th>mestiere_espatrio</th>
+            <th>data</th>
+            <th>validita</th>
+            <th>espatri</th>
+            <th>note</th>
+            <th>rinnovi</th>
+            <th>n_rinnovi</th>
+
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+
+</body>
+</html>
