@@ -5,7 +5,7 @@ new Waypoint({
         if (y) {
             y = false;
             $('#myTable').DataTable({
-                ajax: "https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/people.json",
+                ajax: "https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/data/people.json",
 
                 "columns": [
                     { "data": "nome" },
