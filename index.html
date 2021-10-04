@@ -1,224 +1,104 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <style>
-        .node rect {
-            cursor: move;
-            fill-opacity: .9;
-            shape-rendering: crispEdges;
-        }
-
-        .node text {
-            pointer-events: none;
-            text-shadow: 0 1px 0 #fff;
-        }
-
-        .link {
-            fill: none;
-            stroke: #000;
-            stroke-opacity: .2;
-        }
-
-        .link:hover {
-            stroke-opacity: .5;
-        }
-        body {
-      position: relative; 
-  }
-    </style>
-
-    
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Example Mapping Mobilities</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://www.fbk.eu/wp-content/themes/fbk-foundation/favicon.ico" type="image/x-icon" />
 
-    <script type="text/javascript" src="./sankey.js"></script>
-        
-
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    <!-- Datatables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/c3.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sankey.css" />
+    <title>Mapping Mobilities</title>
+  </head>
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="noframework.waypoints.min.js"></script>
-    <script >
-
-    new Waypoint({
-    element: document.getElementById('testWay'),
-    handler: function() {
-    alert('WaypointBasic waypoint triggered')
-    }
-    })
-
-    </script>
-        
-
-
-    <script type="text/javascript">
-
-     /*    var waypoint = new Waypoint({
-        element: document.getElementById('Treemap'),
-        handler: function() {
-            alert('Basic waypoint triggered')
-        }
-        }); */
-
-     
-
-
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                ajax: "https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/people.json",
-
-                "columns": [
-                    { "data": "nome" },
-                    { "data": "data_nascita" },
-                    { "data": "luogo_nascita" },
-                    { "data": "sesso" },
-                    { "data": "mestiere" },
-                    { "data": "mestiere_espatrio" },
-                    { "data": "data" },
-                    { "data": "validita" },
-                    { "data": "espatri" },
-                    { "data": "note" },
-                    { "data": "rinnovi" },
-                    { "data": "n_rinnovi" }
-                ],
-                paging: true,
-                autoWidth: true,
-
-                "sDom": 'T<"clear">lfrtip',
-        "oTableTools": {
-            "aButtons": [
-                {
-                    "sExtends": "ajax",
-                    "bFooter": true
-                }
-            ]
-        }
-                
-           
-            });
-        });
-
-    </script>
-
-</head>
-
-
-
-
-
-
-
-
-
-
+<!--                                  INIZIO BODY                             -->
 <body data-spy="scroll" data-target=".navbar" >
-    
-<div id="testWay">lol</div>
-
-<!-- TITOLO -->
+    <!--                                NAV BAR -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top flex-column flex-lg-row">  
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#Introduction">Introduzione</a>
+                </li>
+            <li class="nav-item">
+            <a class="nav-link " href="#StackedArea">TimeLine</a>
+            </li>
+            <!-- <li class="nav-item">
+            <a class="nav-link" href="#Treemap">Treemap</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="#Sankey">Sankey</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#DataTable">DataTable</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Form">Contribuisci</a>
+            </li>
+        </ul>
+        </nav>
+    <!--                                TITOLO -->
     <div class="container-fluid p-5 bg-dark text-white text-center">
-        <br><h1>Mapping Mobilities Example</h1>
-
+        <br><h1>Mapping Mobilities</h1> 
+        <h2>La migrazione trentina nel tardo Ottocento</h2>
     </div>
 
+<!--                                DIV PRINCIPALE -->
+<div class="page">
+<div class="container-fluid text-center bg-light text-dark">      
 
-<!-- NAV BAR -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link " href="#StackedArea">StackedArea</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#Treemap">Treemap</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#TreemapD3PLUS">TreemapD3PLUS</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#DataTable">DataTable</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#Sankey">Sankey</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#Form">Form</a>
-      </li>
-  </ul>
-</nav>
-
-    <div class="container text-center">
-
-<!--         STACKED AREA  -->       
-         <div class="row" >
-            <div class="col" id="StackedArea">
-            <script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
-
-            <script>
-                var data = [
-                    { id: "alpha", x: 4, y: 7 },
-                    { id: "alpha", x: 5, y: 25 },
-                    { id: "alpha", x: 6, y: 13 },
-                    { id: "beta", x: 4, y: 17 },
-                    { id: "beta", x: 5, y: 8 },
-                    { id: "beta", x: 6, y: 13 }
-                ];
-
-                new d3plus.StackedArea()
-                    .config({
-                        container: "#StackedArea",
-                        data: data,
-                        groupBy: "id",
-                        width: "900",
-                        height: "400",
-                        left: "100",
-
-                    })
-                    .render();
-            </script>
-</div>
+    <!--                                INTRO -->
+    <div class="row" id="Introduction">
+        <div class="col bg-info text-white text-center">
+        <h1 >INTRODUZIONE</h1>
+        <p style="margin-bottom:400px">Testo di introduzione</p>
         </div>
+    </div>
 
+    <!--                                TRIGGER DATATABLE -->
+    <div id="table-trigger"></div>
+    <br><br>
 
-<!--         TREEMAP DI D3PLUS -->
-        <div class="row" id="TreemapD3PLUS">
-            <div class="col">
-                <div id="map"></div>
-            <script>
-                var data = [
-                    { parent: "Group 1", id: "alpha", value: 29 },
-                    { parent: "Group 1", id: "beta", value: 10 },
-                    { parent: "Group 1", id: "gamma", value: 2 },
-                    { parent: "Group 2", id: "delta", value: 29 },
-                    { parent: "Group 2", id: "eta", value: 25 }
-                ];
-
-
-                new d3plus.Treemap()
-                    /* .container("map") */
-                    .data(data)
-                    .groupBy(["parent", "id"])
-                    .sum("value")
-                    .width("900")
-                    .height("400")
-                    .render();
-            </script>
+    <!--                                STACKED AREA -->
+        <div class="row" >
+            <div class="col-2"></div>
+            <div class="col-8">    
+                <div id="StackedArea"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="card col-8" style="padding-bottom:200px; color:grey">
+                <h1 >DESCRIZIONE DELLA TIMELINE</h1>
+                <p>Testo di descrizione della timeline</p>
+            </div>            
+        </div>
 
-<!--         DATATABLES -->
-        <div class="row" id="DataTable">
+        <br><br>
+
+    <!--                                SANKEY -->
+        <div class="row">
             <div class="col">
+                <div id="Sankey"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="card col-8" style="padding-bottom:200px; color:grey;">
+                <h1>DESCRIZIONE DELLA SANKEY SUGLI SPOSTAMENTI</h1>
+                <p>Testo di descrizione della sankey sugli spostamenti</p>
+            </div>        
+        </div>    
+
+        <br><br>
+
+    <!--                                DATATABLES -->    
+        <div class="row" id="DataTable">
+            <div class="col-1"></div>
+            <div class="col-10">
             <div class="table-responsive">
             <table id="myTable" class="display">
                 <thead>
@@ -241,218 +121,49 @@
         </div>
         </div>
 
-
-<!--         SANKEY -->
-
-        <div class="row" id="Sankey">
-            <div class="col">
-            <h1>PROPOSTA SANKEY per capire dove si sono spostati</h1>
-
-            <script>
-
-                var units = "Widgets";
-
-                // set the dimensions and margins of the graph
-                var margin = { top: 10, right: 10, bottom: 10, left: 10 },
-                    width = 700 - margin.left - margin.right,
-                    height = 300 - margin.top - margin.bottom;
-
-                // format variables
-                var formatNumber = d3.format(",.0f"),    // zero decimal places
-                    format = function (d) { return formatNumber(d) + " " + units; },
-                    color = d3.scaleOrdinal(d3.schemeCategory10);
-
-                // append the svg object to the body of the page
-                var svg = d3.select("body").append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-
-                // Set the sankey diagram properties
-                var sankey = d3.sankey()
-                    .nodeWidth(36)
-                    .nodePadding(40)
-                    .size([width, height]);
-
-                var path = sankey.link();
-
-                // load the data
-                d3.csv("https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/sankey.csv", function (error, data) {
-                    console.log(data);
-
-                    //set up graph in same style as original example but empty
-                    graph = { "nodes": [], "links": [] };
-
-                    data.forEach(function (d) {
-                        graph.nodes.push({ "name": d.source });
-                        graph.nodes.push({ "name": d.target });
-                        graph.links.push({
-                            "source": d.source,
-                            "target": d.target,
-                            "value": +d.value
-                        });
-                    });
-
-                    // return only the distinct / unique nodes
-                    graph.nodes = d3.keys(d3.nest()
-                        .key(function (d) { return d.name; })
-                        .object(graph.nodes));
-
-                    // loop through each link replacing the text with its index from node
-                    graph.links.forEach(function (d, i) {
-                        graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
-                        graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
-                    });
-
-                    // now loop through each nodes to make nodes an array of objects
-                    // rather than an array of strings
-                    graph.nodes.forEach(function (d, i) {
-                        graph.nodes[i] = { "name": d };
-                    });
-
-                    sankey
-                        .nodes(graph.nodes)
-                        .links(graph.links)
-                        .layout(32);
-
-                    // add in the links
-                    var link = svg.append("g").selectAll(".link")
-                        .data(graph.links)
-                        .enter().append("path")
-                        .attr("class", "link")
-                        .attr("d", path)
-                        .style("stroke-width", function (d) { return Math.max(1, d.dy); })
-                        .sort(function (a, b) { return b.dy - a.dy; });
-
-                    // add the link titles
-                    link.append("title")
-                        .text(function (d) {
-                            return d.source.name + " → " +
-                                d.target.name + "\n" + format(d.value);
-                        });
-
-                    // add in the nodes
-                    var node = svg.append("g").selectAll(".node")
-                        .data(graph.nodes)
-                        .enter().append("g")
-                        .attr("class", "node")
-                        .attr("transform", function (d) {
-                            return "translate(" + d.x + "," + d.y + ")";
-                        })
-                        .call(d3.drag()
-                            .subject(function (d) {
-                                return d;
-                            })
-                            .on("start", function () {
-                                this.parentNode.appendChild(this);
-                            })
-                            .on("drag", dragmove));
-
-                    // add the rectangles for the nodes
-                    node.append("rect")
-                        .attr("height", function (d) { return d.dy; })
-                        .attr("width", sankey.nodeWidth())
-                        .style("fill", function (d) {
-                            return d.color = color(d.name.replace(/ .*/, ""));
-                        })
-                        .style("stroke", function (d) {
-                            return d3.rgb(d.color).darker(2);
-                        })
-                        .append("title")
-                        .text(function (d) {
-                            return d.name + "\n" + format(d.value);
-                        });
-
-                    // add in the title for the nodes
-                    node.append("text")
-                        .attr("x", -6)
-                        .attr("y", function (d) { return d.dy / 2; })
-                        .attr("dy", ".35em")
-                        .attr("text-anchor", "end")
-                        .attr("transform", null)
-                        .text(function (d) { return d.name; })
-                        .filter(function (d) { return d.x < width / 2; })
-                        .attr("x", 6 + sankey.nodeWidth())
-                        .attr("text-anchor", "start");
-
-                    // the function for moving the nodes
-                    function dragmove(d) {
-                        d3.select(this)
-                            .attr("transform",
-                                "translate("
-                                + d.x + ","
-                                + (d.y = Math.max(
-                                    0, Math.min(height - d.dy, d3.event.y))
-                                ) + ")");
-                        sankey.relayout();
-                        link.attr("d", path);
-                    }
-                });
-
-            </script>
-</div>
-        </div>
-
-
-<!--         FORM --> 
-        <div class="container-fluid p-5 bg-dark text-white text-center">
+    <!--                                FORM -->
             <div class="row" id="Form">
-            <p class="">
-                Contribuisci
-            </p> <br>
-            <form method="post" action="">
-
-
-                Nome:<br>
-                <input type="text" name="nome"><br><br>
-
-
-
-                La tua storia:<br>
-                <textarea name="commento" rows="5" cols="30"></textarea>
-                <br><br>
-
-                Carica un documento:<br><br>
-                <input type="file" name="foto">
-                <br><br>
-
-                <button type="submit">Invia i dati</button>
-
-            </form>
-        </div>
+            <div class="container-fluid p-5 bg-secondary text-white ">
+                <p>
+                    Contribuisci
+                </p> <br>
+                <form method="post" action="">
+                    Nome:<br>
+                    <input type="text" name="nome"><br><br>
+                    La tua storia:<br>
+                    <textarea name="commento" rows="5" cols="30"></textarea>
+                    <br><br>
+                    Carica un documento:<br><br>
+                    <input type="file" name="foto">
+                    <br><br>
+                    <button onclick="console.log('click')">Invia i dati</button>
+                </form>
+            </div>
         </div>
 
+</div>
 
-
-
-
-
-
-        <!-- 
-
-    <script>
-        var waypoint = new Waypoint({
-  element: document.getElementById('way'),
-  handler: function(direction) {
-    notify(this.id + ' hit')
-  }
-})
-    </script> -->
-
-
-
-
-
-
-    </div>
-
+    <!--                                FOOTER -->
     <div class="jumbotron text-center" style="margin-bottom:0">
-        <p>Footer</p>
-      </div>
+        <p>Footer per crediti, contatti ecc...</p>
+    </div>
+</div>   
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<!--     <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.8.2/dist/d3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script><!--PER LA SANKEY HO AGGIUNTO QUESTA LIBRERIA-->    
+    <script src="js/c3.min.js"></script>
+    <script src="js/stackedarea.js"></script>
+    <script src="js/noframework.waypoints.min.js"></script>
+    <script src="js/mydatatables.js"></script>
+    <script src="js/sankey.js"></script>
+    <script src="js/mysankey.js"></script>
 
 </body>
-
 </html>

@@ -28,7 +28,7 @@
             var path = sankey.link();
 
             // load the data
-            d3.csv("https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/sankey.csv", function (error, data) {
+            d3.csv("https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/data/sankey.csv", function (error, data) {
                 //console.log(data);
 
                 //set up graph in same style as original example but empty

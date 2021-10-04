@@ -2,7 +2,12 @@ var chart = c3.generate({
     bindto: '#StackedArea',
     data: {
         x: 'x',
-        url: 'https://raw.githubusercontent.com/matteomatassoni00/TestFBK/main/data/test-c3.json',
+        columns: [
+            ['x', 1890,1891,1892,1893,1894,1895],
+            ['America', 300, 350, 300, 0, 0, 120],
+            ['Austria', 130, 100, 140, 200, 150, 50],
+            ['Germania', 180, 10, 150, 220, 150, 50]
+        ],
 
         types: {
             America: 'area-spline',
