@@ -1,9 +1,14 @@
 
             var units = "Persone";
 
+            // MODIFICA PER GRANDEZZA VARIABILE IN BASE AL DISPOSITIVO
+
+            var mywidth ;
+            if (screen.width > 800) {mywidth = 700}
+            else  mywidth = 300;
             // set the dimensions and margins of the graph
-            var margin = { top: 10, right: 10, bottom: 10, left: 10 },
-                width = 700 - margin.left - margin.right,
+            var margin = { top: 10, right: 1, bottom: 20, left: 1 },
+                width = mywidth - margin.left - margin.right,
                 height = 300 - margin.top - margin.bottom;
 
             // format variables
