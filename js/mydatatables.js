@@ -26,10 +26,10 @@ new Waypoint({
                 "language": {
                     "lengthMenu": "Visualizza _MENU_ elementi",
                     "zeroRecords": "La ricerca non ha portato alcun risultato.",
-                    "info": "Vista da _PAGE_ di _PAGES_",
+                    "info": "Pagina _PAGE_ di _PAGES_",
                     "infoEmpty": "Nessun risultato",
                     "infoFiltered": "(filtrati da _MAX_ elementi totali)",
-                    "search": "Cerca:",
+                    "search": "Cerca: ",
                     "paginate": {
                         "first":      "Primo",
                         "last":       "Ultimo",

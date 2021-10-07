@@ -6,6 +6,8 @@
             var mywidth ;
             if (screen.width > 800) {mywidth = 700}
             else  mywidth = 300;
+
+
             // set the dimensions and margins of the graph
             var margin = { top: 10, right: 1, bottom: 20, left: 1 },
                 width = mywidth - margin.left - margin.right,
@@ -21,8 +23,7 @@
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")");
+                .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
             // Set the sankey diagram properties
             var sankey = d3.sankey()
